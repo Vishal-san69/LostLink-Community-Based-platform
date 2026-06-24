@@ -1,5 +1,23 @@
+# Node modules
 node_modules/
+
+# Environment files
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Uploads
 uploads/
-dist/
+
+# Build folders
 build/
+dist/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
