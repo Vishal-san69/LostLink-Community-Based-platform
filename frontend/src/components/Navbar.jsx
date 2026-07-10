@@ -1,266 +1,103 @@
-import {
-
-  NavLink,
-
-  useNavigate
-
-} from "react-router-dom";
-
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
 
-  /*
-  ========================================
-  NAVIGATION
-  ========================================
-  */
+  const user = JSON.parse(localStorage.getItem("user"));
 
-  const navigate =
-    useNavigate();
-
-
-  /*
-  ========================================
-  USER
-  ========================================
-  */
-
-  const user = JSON.parse(
-
-    localStorage.getItem(
-      "user"
-    )
-
-  );
-
-
-  /*
-  ========================================
-  ROLE
-  ========================================
-  */
-
-  const role =
-    localStorage.getItem(
-      "role"
-    );
-
-
-  /*
-  ========================================
-  LOGOUT
-  ========================================
-  */
+  const role = localStorage.getItem("role");
 
   const handleLogout = () => {
-
-    localStorage.removeItem(
-      "token"
-    );
-
-    localStorage.removeItem(
-      "user"
-    );
-
-    localStorage.removeItem(
-      "role"
-    );
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("role");
 
     navigate("/login");
-
   };
 
-
-  /*
-  ========================================
-  ACTIVE LINK STYLE
-  ========================================
-  */
-
- const navStyle = ({
-
-  isActive
-
-}) =>
-
-  isActive
-
-    ? "bg-blue-500 text-white px-4 py-2 rounded-xl font-semibold shadow-lg transition"
-
-    : "px-4 py-2 rounded-xl hover:bg-white/10 hover:text-blue-400 transition";
+  const navStyle = ({ isActive }) =>
+    isActive
+      ? "px-4 py-2 rounded-lg bg-indigo-600 text-white font-medium shadow-md transition-all duration-300"
+      : "px-4 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-300";
 
   return (
+    <nav className="sticky top-0 z-50 bg-slate-900 border-b border-slate-800 shadow-md">
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
 
-    <nav className="bg-gray-900 text-white shadow-lg sticky top-0 z-50">
+        {/* Logo */}
 
+        <NavLink
+          to="/"
+          className="flex items-center gap-2 text-2xl font-bold tracking-wide"
+        >
+          <span className="text-indigo-500">Lost</span>
+          <span className="text-white">Link</span>
+        </NavLink>
 
-      <div className="max-w-7xl mx-auto px-6 py-4">
+        {/* Navigation */}
 
-
-        <div className="flex justify-between items-center">
-
-
-          {/* LOGO */}
+        <div className="flex items-center gap-2">
 
           <NavLink
-
             to="/"
-
-            className="text-3xl font-bold text-blue-400"
-
+            className={navStyle}
           >
-
-           Community-Based Lost & Found 
-
+            Dashboard
           </NavLink>
 
+          <NavLink
+            to="/items"
+            className={navStyle}
+          >
+            Items
+          </NavLink>
 
-          {/* NAV LINKS */}
+          <NavLink
+            to="/add-item"
+            className={navStyle}
+          >
+            Add Item
+          </NavLink>
 
-          <div className="flex items-center gap-3">
+          <NavLink
+            to="/my-items"
+            className={navStyle}
+          >
+            My Items
+          </NavLink>
 
-
-            {/* DASHBOARD */}
-
+          {role === "admin" && (
             <NavLink
-
-              to="/"
-
-              className={navStyle}
-
+              to="/admin"
+              className={({ isActive }) =>
+                isActive
+                  ? "px-4 py-2 rounded-lg bg-emerald-600 text-white font-medium shadow-md transition-all duration-300"
+                  : "px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-medium transition-all duration-300"
+              }
             >
-
-              Dashboard
-
+              Admin
             </NavLink>
+          )}
 
-
-            {/* ITEMS */}
-
+          {user ? (
+            <button
+              onClick={handleLogout}
+              className="ml-2 px-4 py-2 rounded-lg bg-red-500 hover:bg-red-600 text-white font-medium transition-all duration-300"
+            >
+              Logout
+            </button>
+          ) : (
             <NavLink
-
-              to="/items"
-
-              className={navStyle}
-
+              to="/login"
+              className="ml-2 px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition-all duration-300"
             >
-
-              Items
-
+              Login
             </NavLink>
-
-
-            {/* ADD ITEM */}
-
-            <NavLink
-
-              to="/add-item"
-
-              className={navStyle}
-
-            >
-
-              Add Item
-
-            </NavLink>
-
-
-            {/* MY ITEMS */}
-
-            <NavLink
-
-              to="/my-items"
-
-              className={navStyle}
-
-            >
-
-              My Items
-
-            </NavLink>
-
-
-            {/* ADMIN */}
-
-            {
-
-              role === "admin" && (
-
-                <NavLink
-
-                  to="/admin"
-
-                  className={({
-
-                    isActive
-
-                  }) =>
-
-                    isActive
-
-                      ? "bg-yellow-400 text-black px-4 py-2 rounded-xl font-semibold"
-
-                      : "bg-yellow-500 hover:bg-yellow-400 text-black px-4 py-2 rounded-xl font-semibold transition"
-
-                  }
-
-                >
-
-                  Admin Panel
-
-                </NavLink>
-
-              )
-
-            }
-
-
-            {/* LOGIN / LOGOUT */}
-
-            {
-
-              user ? (
-
-                <button
-
-                  onClick={handleLogout}
-
-                  className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-xl font-semibold transition"
-
-                >
-
-                  Logout
-
-                </button>
-
-              ) : (
-
-                <NavLink
-
-                  to="/login"
-
-                  className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-xl font-semibold transition"
-
-                >
-
-                  Login
-
-                </NavLink>
-
-              )
-
-            }
-
-          </div>
-
+          )}
         </div>
-
       </div>
-
     </nav>
-
   );
-
 }
 
 export default Navbar;

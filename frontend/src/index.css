@@ -1,3 +1,340 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ==========================================
+   GOOGLE FONT
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+
+/* ==========================================
+   LIGHT THEME
+========================================== */
+
+:root{
+
+  /* Brand Colors */
+
+  --primary:#2563EB;
+  --primary-hover:#1D4ED8;
+
+  --secondary:#4F46E5;
+
+  --success:#10B981;
+
+  --warning:#F59E0B;
+
+  --danger:#EF4444;
+
+  --info:#06B6D4;
+
+
+
+  /* Background */
+
+  --background:#F8FAFC;
+
+  --surface:#FFFFFF;
+
+  --surface-secondary:#F1F5F9;
+
+
+
+  /* Text */
+
+  --text:#1E293B;
+
+  --text-light:#64748B;
+
+  --text-white:#FFFFFF;
+
+
+
+  /* Border */
+
+  --border:#E2E8F0;
+
+
+
+  /* Shadows */
+
+  --shadow-sm:0 2px 8px rgba(0,0,0,.05);
+
+  --shadow-md:0 6px 20px rgba(0,0,0,.08);
+
+  --shadow-lg:0 12px 30px rgba(0,0,0,.12);
+
+
+
+  /* Radius */
+
+  --radius-sm:8px;
+
+  --radius-md:12px;
+
+  --radius-lg:18px;
+
+  --radius-xl:24px;
+
+
+
+  /* Animation */
+
+  --transition:all .3s ease;
+
+}
+
+
+/* ==========================================
+   DARK THEME
+========================================== */
+
+.dark{
+
+  --primary:#3B82F6;
+
+  --primary-hover:#60A5FA;
+
+  --secondary:#6366F1;
+
+  --success:#34D399;
+
+  --warning:#FBBF24;
+
+  --danger:#F87171;
+
+  --info:#22D3EE;
+
+
+
+  --background:#0F172A;
+
+  --surface:#1E293B;
+
+  --surface-secondary:#334155;
+
+
+
+  --text:#F8FAFC;
+
+  --text-light:#CBD5E1;
+
+  --text-white:#FFFFFF;
+
+
+
+  --border:#334155;
+
+
+
+  --shadow-sm:none;
+
+  --shadow-md:none;
+
+  --shadow-lg:none;
+
+}
+
+
+
+/* ==========================================
+   GLOBAL
+========================================== */
+
+*{
+
+  margin:0;
+
+  padding:0;
+
+  box-sizing:border-box;
+
+}
+
+html{
+
+  scroll-behavior:smooth;
+
+}
+
+body{
+
+  font-family:'Inter',sans-serif;
+
+  background:var(--background);
+
+  color:var(--text);
+
+  transition:var(--transition);
+
+}
+
+
+
+/* ==========================================
+   REUSABLE CLASSES
+========================================== */
+
+.page{
+
+  background:var(--background);
+
+  color:var(--text);
+
+}
+
+.card{
+
+  background:var(--surface);
+
+  border:1px solid var(--border);
+
+  border-radius:var(--radius-lg);
+
+  box-shadow:var(--shadow-md);
+
+  transition:var(--transition);
+
+}
+
+.card:hover{
+
+  transform:translateY(-3px);
+
+  box-shadow:var(--shadow-lg);
+
+}
+
+.btn-primary{
+
+  background:var(--primary);
+
+  color:white;
+
+  transition:var(--transition);
+
+}
+
+.btn-primary:hover{
+
+  background:var(--primary-hover);
+
+}
+
+.btn-success{
+
+  background:var(--success);
+
+  color:white;
+
+}
+
+.btn-danger{
+
+  background:var(--danger);
+
+  color:white;
+
+}
+
+.btn-warning{
+
+  background:var(--warning);
+
+  color:white;
+
+}
+
+.text-muted{
+
+  color:var(--text-light);
+
+}
+
+.navbar{
+
+  background:var(--surface);
+
+  border-bottom:1px solid var(--border);
+
+}
+
+.sidebar{
+
+  background:var(--surface);
+
+}
+
+.input{
+
+  background:var(--surface);
+
+  color:var(--text);
+
+  border:1px solid var(--border);
+
+}
+
+.badge-success{
+
+  background:rgba(16,185,129,.15);
+
+  color:var(--success);
+
+}
+
+.badge-warning{
+
+  background:rgba(245,158,11,.15);
+
+  color:var(--warning);
+
+}
+
+.badge-danger{
+
+  background:rgba(239,68,68,.15);
+
+  color:var(--danger);
+
+}
+
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+
+  width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+  background:var(--surface-secondary);
+
+}
+
+::-webkit-scrollbar-thumb{
+
+  background:var(--primary);
+
+  border-radius:20px;
+
+}
+
+
+/* ==========================================
+   SELECTION
+========================================== */
+
+::selection{
+
+  background:var(--primary);
+
+  color:white;
+
+}
