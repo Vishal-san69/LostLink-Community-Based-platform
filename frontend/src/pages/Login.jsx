@@ -38,7 +38,7 @@ function Login() {
         response.data.user.role
       );
 
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       setError("Invalid email or password.");
     }
